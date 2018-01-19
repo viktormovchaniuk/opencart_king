@@ -1,0 +1,265 @@
+{{ header }}
+<div id="account-account">
+  {% if success %}
+  <div class="wrap">
+    <div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ success }}</div>
+  </div>
+  {% endif %}
+  <main id="content" class="main-content">
+    <section class="personal">
+      <div class="wrap">
+        <div class="tabs">
+          <ul class="tabs__pills">
+            <li class="tabs__pills-item active">
+              <a href="#tab-description" class="btn btn--tab" data-toggle="tab">Данные аккаунта</a>
+            </li>
+            <li class="tabs__pills-item">
+              <a href="#tab-2" class="btn btn--tab" data-toggle="tab">Личные данные для доставки</a>
+            </li>
+            <li class="tabs__pills-item">
+              <a href="#tab-3" class="btn btn--tab" data-toggle="tab">Архив заказов</a>
+            </li>
+            <li class="tabs__pills-item">
+              <a href="#tab-4" class="btn btn--tab" data-toggle="tab">Промокоды</a>
+            </li>
+          </ul>
+
+          <div class="tabs__content">
+
+            <div id="tab-description" class="tabs__item active">
+             <div class="tabs__item-content">
+               <div class="tabs__item-content">
+                <section class="bucket-log">
+                  <form action="#" name="bucket-log-form" class="bucket-log__form">
+                    <div class="bucket-log__wrap">
+                      <div class="bucket-log__guest">
+                        <div class="bucket-log__title">данные аккаунта</div>
+                        <div class="bucket-log__personal-data">
+                          <div class="bucket-log__personal-data-item">
+                            <div class="bucket-log__sect-item">
+                              <b class="bucket-log__item-title"><img class="bucket-log__personal-item-img" src="img/comment_img.jpg" alt=""></b>
+                              <span class="bucket-log__item-data"><label class="bucket-log__personal-item-btn">
+                                <span class="btn btn--simple">Загрузить фото профиля</span>
+                                <input type="file">
+                              </label></span>
+                            </div>
+                            <div class="bucket-log__sect-item">
+                              <b class="bucket-log__item-title">ФИО:</b>
+                              <span class="bucket-log__item-data">Артемович Артем Артемьев</span>
+                            </div>
+                            <div class="bucket-log__sect-item">
+                              <b class="bucket-log__item-title">E-mail:</b>
+                              <span class="bucket-log__item-data">aleks@gmail.com</span>
+                            </div>
+                            <div class="bucket-log__sect-item">
+                              <b class="bucket-log__item-title">Никнейм:</b>
+                              <span class="bucket-log__item-data">OD1569</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="input-wrap">
+                          <label>
+                            <span>Введите новый никнейм</span>
+                            <input  type="text">
+                          </label>
+                        </div>
+                        <input class="btn bucket-log__btn" type="submit" value="Продолжить как гость">
+                      </div>
+                      <div class="bucket-log__user">
+                        <div class="bucket-log__title bucket-log__title--no">Смена пароля</div>
+                        <div class="input-wrap">
+                          <label>
+                            <span>Введите старый пароль</span>
+                            <input type="text">
+                          </label>
+                        </div>
+                        <div class="input-wrap">
+                          <label>
+                            <span>Введите новый пароль</span>
+                            <input type="password">
+                          </label>
+                        </div>
+                        <div class="input-wrap">
+                          <label>
+                            <span>Повторите новый пароль</span>
+                            <input type="password">
+                          </label>
+                        </div>
+                        <input class="btn bucket-log__btn" type="submit" value="Сохранить изменения">
+                      </div>
+                    </div>
+                  </form>
+
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="tab-2" class="tabs__item">
+            <div class="delivery-data">
+              <div class="delivery-data__wrap">
+                <div class="delivery-data__header">
+                  <b class="delivery-data__title">Данные для доставки</b>
+                  <span class="delivery-data__help">Вы можете редактировать любое поле</span>
+                </div>
+                <div class="input-wrap delivery-data__input">
+                  <label>
+                    <span>ФИО</span>
+                    <input type="text">
+                  </label>
+                </div>
+                <div class="input-wrap delivery-data__input half-width">
+                  <label>
+                    <span>E-mail</span>
+                    <input type="email">
+                  </label>
+                </div>
+                <div class="input-wrap delivery-data__input half-width">
+                  <label>
+                    <span>Телефон</span>
+                    <input type="tel">
+                  </label>
+                </div>
+                <div class="input-wrap delivery-data__select half-width">
+                  <label>
+                    <span>Выберите страну</span>
+                    <select name="country">
+                      <option value="Ukraine">Украина</option>
+                      <option value="Russia">Россия</option>
+                    </select>
+                  </label>
+                </div>
+                <div class="input-wrap delivery-data__input half-width">
+                  <label>
+                    <span>Город</span>
+                    <input type="text">
+                  </label>
+                </div>
+                <div class="input-wrap delivery-data__input">
+                  <label>
+                    <span>Номер и адрес склада</span>
+                    <input type="text">
+                  </label>
+                </div>
+                <div class="delivery-data__btn-wrap">
+                  <input type="submit" class="btn delivery-data__btn" value="сохранить изменения">
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <div id="tab-3" class="tabs__item">
+            <div class="tabs__item-content">
+              <section class="product-t">
+                <div class="product-t__wrap">
+                  <div class="product-t__row">
+                    <b class="product-t__title-mobile">Архив заказов</b>
+                    <div class="product-t__title">
+                      <div class="product-t__items">
+                        <div class="product-t__item">
+                          <div class="product-t__col">Фото товаров</div>
+                          <div class="product-t__col">Название</div> 
+                          <div class="product-t__col">Цена</div>
+                          <div class="product-t__col">Колличество</div>
+                        </div>
+                      </div>
+                      <div class="product-t__item-status">
+                        <div class="product-t__col">Дата</div>
+                        <div class="product-t__col">Статус</div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="product-t__row">
+                    <div class="product-t__items">
+                      <div class="product-t__item">
+                        <div class="product-t__col product-t__img"><img  width="200" src="img/shoes-item.jpg" alt=""></div>
+                        <div class="product-t__col">New Balance 670BPB</div> 
+                        <div class="product-t__col">1500 грн.</div>
+                        <div class="product-t__col">2</div>
+                      </div>
+                      <div class="product-t__item">
+                        <div class="product-t__col product-t__img"><img  width="200" src="img/shoes-item.jpg" alt=""></div>
+                        <div class="product-t__col">New Balance 670BPB</div> 
+                        <div class="product-t__col">1500 грн.</div>
+                        <div class="product-t__col">2</div>
+                      </div>
+
+                    </div>
+                    <div class="product-t__item-status">
+                      <div class="product-t__col">21.08.94</div>
+                      <div class="product-t__col"><span class="product-t__status">Проведен успешно</span></div>
+                    </div>
+                  </div>
+                  <div class="product-t__row">
+                    <div class="product-t__items">
+                      <div class="product-t__item">
+                        <div class="product-t__col product-t__img"><img  width="200" src="img/shoes-item.jpg" alt=""></div>
+                        <div class="product-t__col">New Balance 670BPB</div> 
+                        <div class="product-t__col">1500 грн.</div>
+                        <div class="product-t__col">2</div>
+                      </div>
+
+
+                    </div>
+                    <div class="product-t__item-status">
+                      <div class="product-t__col">21.08.94</div>
+                      <div class="product-t__col"><span class="product-t__status product-t__status--inprogress">В обработке</span></div>
+                    </div>
+                  </div>
+                  <div class="product-t__row">
+                    <div class="product-t__items">
+                      <div class="product-t__item">
+                        <div class="product-t__col product-t__img"><img  width="200" src="img/shoes-item.jpg" alt=""></div>
+                        <div class="product-t__col">New Balance 670BPB</div> 
+                        <div class="product-t__col">1500 грн.</div>
+                        <div class="product-t__col">2</div>
+                      </div>
+
+
+                    </div>
+                    <div class="product-t__item-status">
+                      <div class="product-t__col">21.08.94</div>
+                      <div class="product-t__col"><span class="product-t__status product-t__status--waiting">Ожидает оплаты</span></div>
+                    </div>
+                  </div>
+                </div>
+
+              </section>
+            </div>
+          </div>
+          <div id="tab-4" class="tabs__item">
+            <div class="tabs__item-content">
+              <section class="promo">
+                <p class="promo__none">На данный момент у Вас нету скидочных промокодов.</p>
+                <div class="promo__wrap">
+                  <div class="promo__table">
+                    <div class="promo__table-title">
+                      <div class="promo__table-col">Промокоды</div>
+                      <div class="promo__table-col">Товары</div>
+                      <div class="promo__table-col">Размер скидки</div>
+                    </div>
+                    <div class="promo__table-row">
+                      <div class="promo__table-col">Ux26481Zht</div>
+                      <div class="promo__table-col">Акриловая краска Angelus white </div>
+                      <div class="promo__table-col">10%</div>
+                    </div>
+                    <div class="promo__table-row">
+                      <div class="promo__table-col">z25Unm12kl</div>
+                      <div class="promo__table-col">Все краски для замшы</div>
+                      <div class="promo__table-col">15%</div>
+                    </div>
+                  </div>
+                  <p class="promo__text">Чтобы использовать промокод скопируйте его и вставьте в специальное поле при оформлении заказа. Он будет использован при покупке соответствующих видов товаров. Размер скидки зависит напрямую от цены товара, на который был выпущен данный промокод.</p>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+</div>
+{{ footer }}

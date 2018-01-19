@@ -1,0 +1,136 @@
+{{ header }}
+<div id="product-category" class="main-content">
+  
+  <div class="navigation">
+    <div class="wrap">
+      <div class="navigation__wrap">
+
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            {% for breadcrumb in breadcrumbs %}
+              <li class="breadcrumbs__list-item">
+                <a class="breadcrumbs__list-link" href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+
+        <div class="item-view">
+          <div class="input-wrap">
+           <label for="input-sort">{{ text_sort }}</label>
+           <select id="input-sort" name="sort-list" onchange="location = this.value;">
+             {% for sorts in sorts %}
+             {% if sorts.value == '%s-%s'|format(sort, order) %}
+             <option value="{{ sorts.href }}" selected="selected">{{ sorts.text }}</option>
+             {% else %}
+             <option value="{{ sorts.href }}">{{ sorts.text }}</option>
+             {% endif %}
+             {% endfor %}
+           </select>
+         </div>
+
+         <div class="input-wrap">
+           <label for="input-limit">{{ text_limit }}</label>
+           <select id="input-limit" onchange="location = this.value;">
+             {% for limits in limits %}
+             {% if limits.value == limit %}
+             <option value="{{ limits.href }}" selected="selected">{{ limits.text }}</option>
+             {% else %}
+             <option value="{{ limits.href }}">{{ limits.text }}</option>
+             {% endif %}
+             {% endfor %}
+           </select>
+         </div>
+       </div>        
+     </div>
+   </div>
+ </div>
+
+
+<section class="products-main">
+  <div id="content" class="wrap">
+    {% if categories %}
+    {% if categories|length <= 5 %}
+    <div class="row">
+      <div class="col-sm-3">
+        <ul>
+          {% for category in categories %}
+          <li><a href="{{ category.href }}">{{ category.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    {% else %}
+    <div class="row">{% for category in categories|batch((categories|length / 4)|round(1, 'ceil')) %}
+      <div class="col-sm-3">
+        <ul>
+          {% for child in category %}
+          <li><a href="{{ child.href }}">{{ child.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}</div>
+    <br />
+    {% endif %}
+    {% endif %}
+
+    {% if products %}
+    <ul class="item-list"> 
+      {% for product in products %}
+      <li class="item-list__item">
+
+        <div class="item transition">
+          <div class="item__img">
+            <a href="{{ product.href }}" class="item__img-link">
+              <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" width="290" height="207">
+            </a>
+            <button aria-label="Add to wishlist" class="btn btn--like item__btn-like" type="button" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');">
+              <i class="fa fa-heart" aria-hidden="true"></i>
+            </button>
+          </div>
+          <h4 class="item__title">
+            <a href="{{ product.href }}">{{ product.name }}</a>
+          </h4>
+          {% if product.price %}
+          <div class="item__price-wrap">
+            {% if not product.special %}
+            <span class="item__price">{{ product.price }}</span>
+            {% else %}
+            <span class="item__price item__price--red">{{ product.special }}<del class="item__price-old">{{ product.price }}</del></span>
+            {% endif %}
+          </div>
+          {% endif %} 
+          <div class="item__size">
+            <select required  class="item__size-select">
+              <option value="" disabled selected hidden>Розмер:</option>
+              <option value="41">41</option>
+              <option value="42">42</option>
+              <option value="43">43</option>
+              <option value="44">44</option>
+            </select>
+          </div>
+          <div class="item__button">
+            <button class="btn btn--add item__btn" type="button" onclick="cart.add('{{ product.product_id }}');">{{ button_cart }}<i class="fa fa-shopping-cart pull-right" aria-hidden="true"></i></button>
+          </div>
+        </div>
+
+      </li>
+      {% endfor %} 
+    </ul>
+    {{ pagination }}
+    <div class="row">
+      <div class="col-sm-12 text-right">{{ results }}</div>
+    </div>
+    {% endif %}
+
+    {% if not categories and not products %}
+    <p>{{ text_empty }}</p>
+    <div class="buttons">
+      <div class="pull-right"><a href="{{ continue }}" class="btn">{{ button_continue }}</a></div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+</div>
+{{ content_bottom }}
+{{ footer }} 

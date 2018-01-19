@@ -1,0 +1,30 @@
+{% if categories %}
+  <nav id="menu" class="main-nav">
+    <ul class="main-nav__list">
+      {% for category in categories %}
+       {% if category.children %}
+        <li class="main-nav__item main-nav__item--dropdown"><a href="{{ category.href }}" class="main-nav__link">{{ category.name }}</a>
+          <div class="nav-dropdown">
+            <div class="nav-dropdown__inner"> 
+            	{% for children in category.children|batch(category.children|length / category.column|round(1, 'ceil')) %}
+              <ul class="nav-dropdown__inner-list">
+                {% for child in children %}
+                <li><a href="{{ child.href }}">{{ child.name }}</a></li>
+                {% endfor %}
+              </ul>
+              {% endfor %}
+            </div>
+            </div>
+        </li>
+       {% else %}
+      <li class="main-nav__item">
+      	<a href="{{ category.href }}">{{ category.name }}</a>
+      </li>
+      {% endif %}
+      {% endfor %}
+      <li class="main-nav__item"><a href="#">О нас</a></li>
+      <li class="main-nav__item"><a href="#">Отзывы</a></li>
+      
+    </ul>
+  </nav>
+{% endif %} 

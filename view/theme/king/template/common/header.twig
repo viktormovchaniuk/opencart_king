@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<!--[if IE 8 ]><html dir="{{ direction }}" lang="{{ lang }}" class="ie8"><![endif]-->
+<!--[if IE 9 ]><html dir="{{ direction }}" lang="{{ lang }}" class="ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html dir="{{ direction }}" lang="{{ lang }}">
+<!--<![endif]-->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{{ title }}</title>
+  <base href="{{ base }}" />
+  {% if description %}
+  <meta name="description" content="{{ description }}" />
+  {% endif %}
+  {% if keywords %}
+  <meta name="keywords" content="{{ keywords }}" />
+  {% endif %}
+  <link href="catalog/view/javascript/jquery/swiper/css/swiper.min.css" rel="stylesheet" media="screen" />
+  <link href="catalog/view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+  <link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,900&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
+  <link href="catalog/view/theme/king/stylesheet/main.css" rel="stylesheet">
+  {% for style in styles %}
+  <link href="{{ style.href }}" type="text/css" rel="{{ style.rel }}" media="{{ style.media }}" />
+  {% endfor %}
+
+  <script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js"></script>
+  <script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js"></script>
+
+
+  {% for link in links %}
+  <link href="{{ link.href }}" rel="{{ link.rel }}" />
+  {% endfor %}
+  {% for analytic in analytics %}
+  {{ analytic }}
+  {% endfor %}
+</head>
+<body>
+  <header class="main-header">
+    <div class="main-header__mobile wrap">
+      <nav class="nav-left">
+        <button id="btn-toggle-left" type="button" class="btn-toggle">
+          <span class="btn-toggle__line"></span>
+          <span class="btn-toggle__line"></span>
+          <span class="btn-toggle__line"></span>
+        </button>
+        <div class="nav-left__content">
+          <ul class="nav-list">
+            <li class="nav-list__item nav-list__item--user">
+              <div class="user-log">
+                {% if logged %}
+                <a href="{{ logout }}">{{ text_logout }}</a>
+                <a href="{{ account }}">{{ text_account }}</a>
+                {% else %}
+                <a href="{{ login }}">{{ text_login }}</a>
+                <a href="{{ register }}">{{ text_register }}</a>
+                {% endif %}
+              </div>
+            </li>
+            {% for category in categories %}
+            {% if category.children %}
+            <li class="nav-list__item dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{ category.name }}<i class="fa fa-chevron-right pull-right" aria-hidden="true"></i></a>
+              <div class="dropdown-menu nav-dropdown">
+                <div class="dropdown-inner nav-dropdown__inner">
+                  <ul>
+                    {% for children in category.children|batch(category.children|length / category.column|round(1, 'ceil')) %}
+                    {% for child in children %}
+                    <li><a href="{{ child.href }}">{{ child.name }}</a></li>
+                    {% endfor %}
+                    {% endfor %}
+                    <li>
+                      <a href="{{ category.href }}">{{ text_all }}</a>
+                    </li>
+                  </ul>
+                  
+                </div>
+              </div>
+
+            </li>
+            {% else %}
+            <li class="nav-list__item">
+              <a href="{{ category.href }}">{{ category.name }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+            <li class="nav-list__item nav-list__item--search">
+              <div id="search-mobile" class="mobile-search">
+                <input name="search" value="" placeholder="{{ text_search }}" type="text">
+                <button class="btn btn--search" type="button">
+                 <i class="fa fa-search" aria-hidden="true"></i>
+               </button>
+             </div>
+           </li>
+         </ul>
+       </div>
+     </nav>
+     <div class="main-logo">
+      {% if logo %}
+      <a href="{{ home }}">
+        <img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" width="43" height="45">
+        <h1 class="main-logo__title">{{ name }}</h1>
+      </a>
+      {% else %}
+      <a href="{{ home }}">
+        <h1 class="main-logo__title">{{ name }}</h1>
+      </a>
+      {% endif %}
+    </div>
+    <nav class="nav-right">
+      <button id="btn-toggle-right" type="button" class="btn-toggle btn-toggle--right">
+        <span class="btn-toggle__line"></span>
+        <span class="btn-toggle__line"></span>
+        <span class="btn-toggle__line"></span>
+        <span class="btn-toggle__line btn-toggle__line--right"></span>
+      </button>
+      <div class="nav-right__content">
+        <ul class="nav-list">
+          <li class="nav-list__item">
+            <a href="{{ wishlist }}" class="nav-left__link" id="wishlist-total-mobile">{{ text_wishlist_mobile }}</a>
+          </li>
+          <li class="nav-list__item">
+            <a id="cart-mobile" href="{{ shopping_cart }}">{{ text_shopping_cart_mobile }}</a>
+          </li>
+          <li class="nav-list__item">
+            <a href="{{ wishlist }}">О нас</a>
+          </li>
+          <li class="nav-list__item">
+            <a href="{{ wishlist }}">Отзивы</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="main-header-desktop wrap">
+    <div class="main-header__top">
+      <div id="logo" class="main-logo">
+        {% if logo %}
+        <a href="{{ home }}">
+          <img src="{{ logo }}" title="{{ name }}" alt="{{ name }}">
+          <h1 class="main-logo__title">{{ name }}</h1>
+        </a>
+        {% else %}
+        <a href="{{ home }}">
+          <h1 class="main-logo__title">{{ name }}</h1>
+        </a>
+        {% endif %}
+      </div>
+      {{ search }}
+      <div class="user-log">
+        {% if logged %}
+        <a href="{{ logout }}">{{ text_logout }}</a>
+        <a href="{{ account }}">{{ text_account }}</a>
+        {% else %}
+        <a href="{{ login }}">{{ text_login }}</a>
+        <a href="{{ register }}">{{ text_register }}</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="main-header__bot">
+      {{ menu }}
+      <div class="like-bucket">
+        <a aria-label="Wishlist" id="wishlist-total" href="{{ wishlist }}" title="{{ text_wishlist }}">
+          <span class="like-bucket__counter">{{ text_wishlist }}</span>
+          <i class="fa fa-heart" aria-hidden="true"></i>
+        </a>
+        <a aria-label="Cart" id="cart-total" href="{{ shopping_cart }}" title="{{ text_shopping_cart }}">
+          <span class="like-bucket__counter">{{ text_shopping_cart }}</span>
+          <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+
+  </div> 
+  {{cart}}
+</header>

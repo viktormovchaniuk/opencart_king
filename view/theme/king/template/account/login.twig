@@ -1,0 +1,71 @@
+{{ header }}
+<div id="account-login" class="main-content">
+  <div class="navigation">
+    <div class="wrap">
+      <div class="navigation__wrap">
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            {% for breadcrumb in breadcrumbs %}
+            <li class="breadcrumbs__list-item">
+              <a class="breadcrumbs__list-link" href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </nav>     
+      </div>
+    </div>
+  </div>
+  {{address_form}}
+
+  {% if success %}
+  <div class="wrap">
+    <div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ success }}</div>
+  </div>
+  {% endif %}
+  {% if error_warning %}
+  <div class="wrap">
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}</div>
+  </div>
+  {% endif %}
+
+    <section id="content" class="bucket-log">
+    <div class="wrap">
+      <form action="{{ action }}" method="post" enctype="multipart/form-data" class="bucket-log__form">
+        <div class="bucket-log__wrap">
+          <div class="bucket-log__guest">
+            <div class="bucket-log__title">{{ text_new_customer }}</div>
+            <p style="margin: 15px auto;"><strong>{{ text_register }}</strong></p>
+            <p class="bucket-log__text">
+             {{ text_register_account }}
+            </p>
+           
+            <a href="{{ register }}" class="btn bucket-log__btn">{{ button_continue }}</a>
+          </div>
+          <div class="bucket-log__user">
+            <div class="bucket-log__title bucket-log__title--no">{{ text_returning_customer }}</div>
+            <p style="margin: 15px auto;"><strong>{{ text_i_am_returning_customer }}</strong></p>
+            <div class="input-wrap">
+              <label>
+                <span>{{ entry_email }}</span>
+                <input type="text" name="email" value="{{ email }}" placeholder="{{ entry_email }}">
+              </label>
+            </div>
+            <div class="input-wrap">
+              <label>
+                <span>{{ entry_password }}</span>
+                <input type="password" name="password" value="{{ password }}" placeholder="{{ entry_password }}">
+              </label>
+              <a style="margin-top: 10px;display: inline-block;" href="{{ forgotten }}">{{ text_forgotten }}</a>
+            </div>
+            <input class="btn bucket-log__btn" type="submit" value="{{ button_login }}" >
+            {% if redirect %}
+              <input type="hidden" name="redirect" value="{{ redirect }}" />
+            {% endif %}
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</div>
+{{ footer }}

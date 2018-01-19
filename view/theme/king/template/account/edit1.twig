@@ -1,0 +1,78 @@
+{{ header }}
+<div id="account-edit">
+  {% if error_warning %}
+  <div class="wrap">
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}</div>
+  </div>
+  {% endif %}
+  <div id="content" class="main-content">
+    <div class="personal">
+      <div class="tabs">
+        <ul class="tabs__pills">
+          <li class="tabs__pills-item active"><a href="{{ edit }}" class="btn btn--tab">Данные аккаунта</a></li>
+        <li class="tabs__pills-item"><a href="{{ password }}" class="btn btn--tab">{{ acc_text_password }}</a></li>
+        <li class="tabs__pills-item"><a href="{{ address }}" class="btn btn--tab">Личные данные для доставки</a></li>
+        <li class="tabs__pills-item"><a href="{{ order }}" class="btn btn--tab">{{ acc_text_order }}</a></li>
+        <li class="tabs__pills-item"><a href="{{ reward }}" class="btn btn--tab">{{ acc_text_reward }}</a></li>
+        <li class="tabs__pills-item"><a href="{{ transaction }}" class="btn btn--tab">Архив заказов</a></li>
+        <li class="tabs__pills-item"><a href="{{ text_my_newsletter }}" class="btn btn--tab">{{ acc_text_newsletter }}</a></li>
+        </ul>
+      </div>
+      <div class="wrap">
+       <form action="{{ action }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+         <div class="delivery-data">
+           <div class="delivery-data__wrap">
+             <div class="delivery-data__header">
+               <b class="delivery-data__title">{{ heading_title }}</b>
+               <span class="delivery-data__help">Вы можете редактировать любое поле</span>
+             </div>
+             
+             <div class="input-wrap delivery-data__input half-width">
+               <label>
+                 <span>{{ entry_firstname }}</span>
+                 <input type="text" name="firstname" value="{{ firstname }}" placeholder="{{ entry_firstname }}" id="input-firstname" />
+                 {% if error_firstname %}
+                 <div class="text-danger">{{ error_firstname }}</div>
+                 {% endif %}
+               </label>
+             </div>
+             <div class="input-wrap delivery-data__input half-width">
+               <label>
+                 <span>{{ entry_lastname }}</span>
+                 <input type="text" name="lastname" value="{{ lastname }}" placeholder="{{ entry_lastname }}" id="input-lastname" />
+                 {% if error_lastname %}
+                 <div class="text-danger">{{ error_lastname }}</div>
+                 {% endif %}
+               </label>
+             </div>
+             <div class="input-wrap delivery-data__input">
+               <label>
+                 <span>{{ entry_email }}</span>
+                 <input type="email" name="email" value="{{ email }}" placeholder="{{ entry_email }}" id="input-email" />
+                 {% if error_email %}
+                 <div class="text-danger">{{ error_email }}</div>
+                 {% endif %}
+               </label>
+             </div>
+             <div class="input-wrap delivery-data__input">
+               <label>
+                 <span>{{ entry_telephone }}</span>
+                 <input type="tel" name="telephone" value="{{ telephone }}" placeholder="{{ entry_telephone }}" id="input-telephone" />
+                 {% if error_telephone %}
+                 <div class="text-danger">{{ error_telephone }}</div>
+                 {% endif %}
+               </label>
+             </div>
+             <div class="delivery-data__btn-wrap">
+               <div class="pull-left"><a href="{{ back }}" class="btn">{{ button_back }}</a></div>
+               <input type="submit" class="btn delivery-data__btn" value="{{ button_continue }}">
+             </div>
+           </div>
+         </div>
+       </form>
+         </div>
+    </div>
+ </div>
+</div>
+
+{{ footer }}

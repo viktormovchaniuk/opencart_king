@@ -1,0 +1,45 @@
+ <div id="cart" class="cart-btn">
+  <button type="button" data-toggle="dropdown" class="user-bucket__item-bucket dropdown-toggle">
+    <span class="cart-btn-counter">{{ text_shopping_cart }}</span>
+    <svg fill="#000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="20px">
+      <path transform="scale(1.2)" d="M5.400,13.589 C4.411,13.589 3.601,14.354 3.601,15.288 C3.601,16.223 4.411,16.988 5.400,16.988 C6.390,16.988 7.200,16.223 7.200,15.288 C7.200,14.354 6.390,13.589 5.400,13.589 ZM0.003,-0.004 L0.003,1.695 L1.802,1.695 L5.041,8.152 L3.781,10.191 C3.691,10.446 3.601,10.786 3.601,11.041 C3.601,11.975 4.411,12.740 5.400,12.740 L16.196,12.740 L16.196,11.041 L5.760,11.041 C5.670,11.041 5.581,10.955 5.581,10.870 L5.581,10.786 L6.390,9.341 L13.047,9.341 C13.767,9.341 14.307,9.001 14.577,8.492 L17.815,2.970 C17.995,2.800 17.995,2.715 17.995,2.545 C17.995,2.035 17.635,1.695 17.096,1.695 L3.781,1.695 L2.972,-0.004 L0.003,-0.004 ZM14.397,13.589 C13.407,13.589 12.597,14.354 12.597,15.288 C12.597,16.223 13.407,16.988 14.397,16.988 C15.386,16.988 16.196,16.223 16.196,15.288 C16.196,14.354 15.386,13.589 14.397,13.589 Z"/>
+    </svg>
+  </button>
+  <ul class="cart-body">
+    {% if products %}
+    <li>
+      {% for product in products %}
+        <div class="cart-body__item">   
+            <a href="{{ product.href }}">{{ product.name }}</a>
+              <span class="text-right">x {{ product.quantity }}</span>
+              <span class="text-right">{{ product.total }}</span>
+              <button type="button" onclick="cart.remove('{{ product.cart_id }}');" title="{{ button_remove }}" class="btn btn-item-remove"><i class="fa fa-times"></i></button>
+              
+          </div>
+          <hr>
+        {% endfor %}
+      </li>
+      <li>
+        <div>
+            {% for total in totals %}
+              <div style="text-align: right;">
+                <strong>{{ total.title }}</strong>
+                <span id="cart-total">{{ total.text }}</span>
+              </div>
+            {% endfor %}
+          <hr>
+          <p class="cart-body__links">
+            <a href="{{ cart }}"><strong><i class="fa fa-shopping-cart"></i> {{ text_cart }}</strong></a>&nbsp;&nbsp;&nbsp;<a href="{{ checkout }}"><strong><i class="fa fa-share"></i> {{ text_checkout }}</strong></a>
+          </p>
+
+        </div>
+      </li>
+      {% else %}
+      <li>
+        <p class="text-center" style="margin: 5px auto;">{{ text_empty }}</p>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+
+</div>

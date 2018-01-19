@@ -1,0 +1,50 @@
+
+ <section class="products-main bestseller">
+    <div class="wrap">
+    <h3>{{ heading_title }}</h3>
+     <ul class="item-list"> 
+      {% for product in products %}
+      <li class="item-list__item">
+
+        <div class="item transition">
+          <div class="item__img">
+            <a href="{{ product.href }}" class="item__img-link">
+              <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" width="290" height="207">
+            </a>
+            <button aria-label="Add to wishlist" class="btn btn--like item__btn-like" type="button" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');">
+              <i class="fa fa-heart" aria-hidden="true"></i>
+            </button>
+          </div>
+          <h4 class="item__title">
+            <a href="{{ product.href }}">{{ product.name }}</a>
+          </h4>
+          {% if product.price %}
+          <div class="item__price-wrap">
+            {% if not product.special %}
+            <span class="item__price">{{ product.price }}</span>
+            {% else %}
+            <span class="item__price item__price--red">{{ product.special }}<del class="item__price-old">{{ product.price }}</del></span>
+            {% endif %}
+          </div>
+          {% endif %} 
+          <div class="item__size">
+            <select required  class="item__size-select">
+              <option value="" disabled selected hidden>Розмер:</option>
+              <option value="41">41</option>
+              <option value="42">42</option>
+              <option value="43">43</option>
+              <option value="44">44</option>
+            </select>
+          </div>
+          <div class="item__button">
+            <button class="btn btn--add item__btn" type="button" onclick="cart.add('{{ product.product_id }}');">{{ button_cart }}<i class="fa fa-shopping-cart pull-right" aria-hidden="true"></i></button>
+          </div>
+        </div>
+
+      </li>
+      {% endfor %} 
+    </ul>
+    {{ pagination }}
+      <div class="col-sm-12 text-right">{{ results }}</div>
+  </div>
+</section>

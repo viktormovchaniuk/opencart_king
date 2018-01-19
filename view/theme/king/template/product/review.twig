@@ -1,0 +1,14 @@
+{% if reviews %}
+{% for review in reviews %}
+<div class="slider__item swiper-slide">
+  <div class="feedback-item">
+    <b class="feedback-item__title">{{ review.author }}</b>
+    <span class="feedback-item__subtitle">{{ review.date_added }}</span>
+    <p class="feedback-item__text">{{ review.text }}</p>
+  </div>
+</div>
+{% endfor %}
+{% else %}
+	<div style="text-align: center; padding: 15px 20px;width: 100%">{{ text_no_reviews }}</div>
+{% endif %} 
+

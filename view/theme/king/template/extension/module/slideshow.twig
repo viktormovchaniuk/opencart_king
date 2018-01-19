@@ -1,0 +1,39 @@
+
+<section class="prewiev">
+  <div id="slideshow{{ module }}" class="swiper-container">
+    <div class="swiper-wrapper">
+      {% for banner in banners %}
+      <div class="swiper-slide">
+        {% if banner.link %}
+        <a class="prewiev__item" href="{{ banner.link }}">
+          <img class="prewiev__img" src="{{ banner.image }}" alt="{{ banner.title }}"/>
+        </a>
+        {% else %}
+          <img class="prewiev__img" src="{{ banner.image }}" alt="{{ banner.title }}"/>
+        {% endif %}
+      </div>
+      {% endfor %} 
+    </div>
+  </div>
+  <div class="swiper-button-next btn prewiev__btn-next"></div>
+  <div class="swiper-button-prev btn prewiev__btn-prev"></div>
+</section>
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function(event) { 
+  $('#slideshow{{ module }}').swiper({
+    mode: 'horizontal',
+    slidesPerView: 1,
+    pagination: false,
+    paginationClickable: false,
+    nextButton: '.swiper-button-next',
+    prevButton: '.swiper-button-prev',
+    spaceBetween: 10,
+    autoplay: 10000,
+    autoplayDisableOnInteraction: true,
+    loop: true,
+    disabledClass: 'btn'
+  });
+});
+
+</script>
+

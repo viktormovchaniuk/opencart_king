@@ -1,0 +1,103 @@
+{{ header }}
+<div id="checkout-cart" class="wrap">
+  <div class="navigation">
+    <div class="wrap">
+      <div class="navigation__wrap">
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            {% for breadcrumb in breadcrumbs %}
+            <li class="breadcrumbs__list-item">
+              <a class="breadcrumbs__list-link" href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </nav>     
+      </div>
+    </div>
+  </div>
+  
+  {% if attention %}
+  <div class="alert alert-info"><i class="fa fa-info-circle"></i> {{ attention }}
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+  </div>
+  {% endif %}
+  {% if success %}
+  <div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ success }}
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+  </div>
+  {% endif %}
+  {% if error_warning %}
+  <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+  </div>
+  {% endif %}
+
+  <div id="content" class="main-content">
+    <section class="product-table">
+      <div class="wrap">
+       <form id="cart-from" action="{{ action }}" method="post" enctype="multipart/form-data">
+        <div class="product-table__wrap">
+          <div class="product-table__title">
+            <div class="product-table__item-column">
+                <b class="product-table__title-mobile">Корзина</b>
+            </div>
+            <div class="product-table__item-column">
+              <b class="product-table__title-item">{{ column_image }}</b>
+            </div>
+            <div class="product-table__item-column">
+              <b class="product-table__title-item">{{ column_name }}</b>
+            </div>
+            <div class="product-table__item-column">
+              <b class="product-table__title-item">{{ column_quantity }}</b>
+            </div>
+            <div class="product-table__item-column">
+              <b class="product-table__title-item">{{ column_price }}</b>
+            </div>
+          </div>
+          {% for product in products %}
+          <div class="product-table__item-wrap">
+            <div class="product-table__item">
+              <div class="product-table__item-column">
+                <a href="#" title="{{ button_remove }}" class="product-table__close-btn" onclick="cart.remove('{{ product.cart_id }}');"><i class="fa fa-times"></i></a>
+                
+              </div>
+              <div class="product-table__item-column">{% if product.thumb %} <a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" /></a> {% endif %}</div>
+
+              <div class="product-table__item-column"><span class="product-table__item-name">{{ product.name }}{% if not product.stock %} <span class="text-danger">***</span> {% endif %}</span></div>
+              <div class="product-table__item-column">
+                <div class="number-input product-table__input">
+                  <button id='btn-up' class="btn btn--step-up number-input__btn" type="button">+</button>
+                    <input onchange="cart.updateCart('{{ product.quantity }}');" type="number" name="quantity[{{ product.cart_id }}]" value="{{ product.quantity }}" size="1" class="form-control" min="1" step="1">
+                  <button id='btn-down' class="btn btn--step-down number-input__btn number-input__btn--bottom" type="button">-</button>
+                </div>
+              </div>
+              <div class="product-table__item-column"><span class="product-table__item-price">{{ product.price }}</span></div>
+            </div>
+          </div>
+          {% endfor %}
+
+
+
+
+        </div>
+      </form>
+      <div class="product-table__submit">
+        {% for total in totals %}
+        <div class="product-table__sum"><span class="product-table__total-title">{{ total.title }}:</span>  <span class="product-table__total-text"> {{ total.text }}</span></div>
+        {% endfor %}
+        <a href="{{ checkout }}" class="btn product-table__submit-btn">{{ button_checkout }}</a>
+      </div>
+
+      
+
+    </div>    
+  </section>
+
+
+
+
+
+</div>
+
+</div>
+{{ footer }} 

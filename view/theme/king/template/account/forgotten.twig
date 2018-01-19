@@ -1,0 +1,42 @@
+{{ header }}
+<div id="account-forgotten" class="wrap">
+  <div class="navigation">
+    <div class="wrap">
+      <div class="navigation__wrap">
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            {% for breadcrumb in breadcrumbs %}
+            <li class="breadcrumbs__list-item">
+              <a class="breadcrumbs__list-link" href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </nav>     
+      </div>
+    </div>
+  </div>
+  {% if error_warning %}
+  <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}</div>
+  {% endif %}
+
+  <div id="content">
+    <form action="{{ action }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+        <div class="modal-reg__content">
+            <b class="modal-reg__title">{{ heading_title }}</b>
+          <div class="input-wrap">
+            <label>
+              <span>{{ entry_email }}</span>
+              <input type="text" name="email" value="{{ email }}" placeholder="{{ entry_email }}" id="input-email" />
+            </label>
+          </div>
+          <p style="padding: 0 20px;">Введите E-Mail Вашей учетной записи. Нажмите кнопку <b>Продолжить</b>, чтобы получить пароль по электронной почте.</p>
+          <div class="input-wrap clearfix">
+            <a class="btn pull-left" href="{{ back }}">{{ button_back }}</a>
+            <button class="btn pull-right" type="submit">{{ button_continue }}</button>
+          </div>
+        </div>
+    </form>
+  </div>
+
+</div>
+{{ footer }}

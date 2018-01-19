@@ -1,0 +1,143 @@
+{{ header }}
+
+<div id="account-register" class="main-content">
+  <div class="navigation">
+    <div class="wrap">
+      <div class="navigation__wrap">
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            {% for breadcrumb in breadcrumbs %}
+            <li class="breadcrumbs__list-item">
+              <a class="breadcrumbs__list-link" href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </nav>     
+      </div>
+    </div>
+  </div>
+
+  {% if error_warning %}
+  <div class="wrap">
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}</div>
+  </div>
+  {% endif %}
+  
+  <div class="modal-reg">
+    <div class="wrap">
+      <div class="modal-reg__content">
+        <b class="modal-reg__title">Регистрация</b>
+        <form class="modal-reg__form" action="{{ action }}" method="post" enctype="multipart/form-data">
+          <div class="input-wrap required">
+            <label>
+              <span>{{ entry_firstname }}</span>
+              <input type="text" name="firstname" value="{{ firstname }}" placeholder="{{ entry_firstname }}">
+              {% if error_firstname %}
+              <div class="alert">{{ error_firstname }}</div>
+              {% endif %}
+            </label>
+          </div>
+          <div class="input-wrap required">
+            <label>
+              <span>{{ entry_lastname }}</span>
+              <input type="text" name="lastname" value="{{ lastname }}" placeholder="{{ entry_lastname }}">
+              {% if error_lastname %}
+              <div class="alert">{{ error_lastname }}</div>
+              {% endif %}
+            </label>
+          </div>
+          <div class="input-wrap required">
+            <label>
+              <span>{{ entry_email }}</span>
+              <input type="email" name="email" value="{{ email }}" placeholder="{{ entry_email }}">
+              {% if error_email %}
+              <div class="alert">{{ error_email }}</div>
+              {% endif %}
+            </label>
+          </div>
+          <div class="input-wrap required">
+            <label>
+              <span>{{ entry_telephone }}</span>
+              <input type="tel" name="telephone" value="{{ telephone }}" placeholder="{{ entry_telephone }}">
+              {% if error_telephone %}
+              <div class="alert">{{ error_telephone }}</div>
+              {% endif %}
+            </label>
+          </div>
+          <div class="input-wrap required">
+            <label>
+              <span>{{ entry_password }}</span>
+              <input type="password" name="password" value="{{ password }}" placeholder="{{ entry_password }}">
+              {% if error_password %}
+              <div class="alert">{{ error_password }}</div>
+              {% endif %}
+            </label>
+          </div>
+          <div class="input-wrap required">
+            <label>
+              <span>{{ entry_confirm }}</span>
+              <input type="password" name="confirm" value="{{ confirm }}" placeholder="{{ entry_confirm }}">
+              {% if error_confirm %}
+              <div class="alert">{{ error_confirm }}</div>
+              {% endif %}
+            </label>
+          </div>
+
+          <div class="input-wrap--radio" style="margin-top: 15px">
+            <span>{{ entry_newsletter }}</span>
+            {% if newsletter %}
+            <label>   
+              <input type="radio" name="newsletter" value="1" checked="checked">
+              {{ text_yes }}
+              <span class="radio-flag"></span>
+            </label>
+            <label>   
+              <input type="radio" name="newsletter" value="0">
+              {{ text_no }}
+              <span class="radio-flag"></span>
+            </label>
+            {% else %}
+            <label>   
+              <input type="radio" name="newsletter" value="1">
+              {{ text_yes }}
+              <span class="radio-flag"></span>
+            </label>
+            <label>   
+              <input type="radio" name="newsletter" value="0" checked="checked">
+              {{ text_no }}
+              <span class="radio-flag"></span>
+            </label>
+            {% endif %}
+          </div>
+
+         
+          {{ captcha }}
+
+        {% if text_agree %}
+        <div class="modal-reg__buttons" style="margin-top: 15px;">
+          <div>{{ text_agree }}
+            {% if agree %}
+            <input type="checkbox" name="agree" value="1" checked="checked" />
+            {% else %}
+            <input type="checkbox" name="agree" value="1" />
+            {% endif %}
+            &nbsp;
+            
+          </div>
+          <div class="input-wrap">
+            <input type="submit" value="{{ button_continue }}" class="btn btn-primary" />
+          </div>
+        </div>
+        {% else %}
+        <div class="input-wrap">
+            <input class="btn" type="submit" value="{{ button_continue }}">
+        </div>
+        {% endif %}
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{{ footer }} 

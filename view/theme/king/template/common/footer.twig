@@ -1,0 +1,53 @@
+<footer class="main-footer">
+	<div class="wrap">
+		<div class="main-footer__item">
+			<b class="main-footer__item-title">Контакты:</b>
+			<div class="main-footer__item-content">
+				<span>
+					{{ telephone }}<br>+38 (098) 712-73-63
+				</span>
+			</div>
+		</div>
+		{% if informations %}
+		<div class="main-footer__item">
+			<b class="main-footer__item-title">Помощь:</b>
+			<div class="main-footer__item-content">
+				{% for information in informations %}
+				<a href="{{ information.href }}">{{ information.title }}</a>
+				{% endfor %}
+			</div>
+		</div>
+		{% endif %}
+		<div class="main-footer__item">
+			<b class="main-footer__item-title">Стрницы:</b>
+			<div class="main-footer__item-content">	
+				{% for category in categories %}
+					<a href="{{ category.href }}">{{ category.name }}</a>
+				{% endfor %}
+				<a href="#">Отзивы</a>
+			</div>
+		</div>
+		<div class="main-footer__item">
+			{% if logo %}
+			<div class="main-footer__item-content">
+				<img src="{{ logo }}" title="{{ name }}" alt="{{ name }}">
+				<a href="{{ home }}"><span>{{ name }}</span> - 2017.</a> Все права защищены.
+			</div>
+			{% else %}
+			<div class="main-footer__item-content">
+				<a href="{{ home }}"><span>{{ name }}</span> - 2017.</a> Все права защищены.
+			</div>
+			{% endif %}
+		</div>
+	</div>
+</footer>
+
+<!-- <script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js"></script>
+<script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js"></script> -->
+<script src="catalog/view/javascript/common.js"></script>
+
+
+{% for script in scripts %}
+	<script src="{{ script }}"></script>
+{% endfor %}
+</body></html>

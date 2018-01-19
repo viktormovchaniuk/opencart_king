@@ -1,0 +1,57 @@
+{{ header }}
+<div id="account-address" >
+
+  {% if success %}
+
+  <div class="wrap">
+    <div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ success }}</div>
+  </div>
+
+  {% endif %}
+  {% if error_warning %}
+  <div class="wrap">
+    <div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}</div>
+  </div>  {% endif %}
+
+  <div id="content" class="main-content">
+    <section class="personal">
+     <div class="tabs">
+      <ul class="tabs__pills">
+        <li class="tabs__pills-item active"><a href="{{ edit }}" class="btn btn--tab">Данные аккаунта</a></li>
+        <li class="tabs__pills-item"><a href="{{ password }}" class="btn btn--tab">{{ text_password }}</a></li>
+        <li class="tabs__pills-item"><a href="{{ address }}" class="btn btn--tab">Личные данные для доставки</a></li>
+        <li class="tabs__pills-item"><a href="{{ order }}" class="btn btn--tab">{{ text_order }}</a></li>
+        <li class="tabs__pills-item"><a href="{{ reward }}" class="btn btn--tab">{{ text_reward }}</a></li>
+        <li class="tabs__pills-item"><a href="{{ transaction }}" class="btn btn--tab">Архив заказов</a></li>
+        <li class="tabs__pills-item"><a href="{{ text_my_newsletter }}" class="btn btn--tab">{{ text_newsletter }}</a></li>
+      </ul>
+    </div>
+    <div class="wrap">
+     {% if addresses %}
+     <div class="verification">
+      <div class="verification__wrap">
+        <b class="verification__title">{{ text_address_book }}</b>
+        {% for result in addresses %}
+        <div class="verification__sect">
+          <div>{{ result.address }}</div>
+          <div>
+            <a href="{{ result.update }}" class="btn-top">{{ button_edit }}</a> &nbsp; <a href="{{ result.delete }}" class="btn-delete">{{ button_delete }}</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% else %}
+    <p>Список адресов в аккаунте, пуст.</p> 
+    {% endif %}
+    <div class="verification">
+      <a href="{{ back }}" class="btn">{{ button_back }}</a>
+      <a href="{{ add }}" class="btn pull-right">{{ button_new_address }}</a>
+    </div>
+  </div>
+</div>
+</section>
+</div>
+
+
+{{ footer }}
