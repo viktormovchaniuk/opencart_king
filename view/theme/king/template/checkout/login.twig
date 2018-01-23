@@ -1,0 +1,36 @@
+ <div class="wrap">
+    <div class="bucket-log__wrap">
+        <div class="bucket-log__guest">
+            <h2 class="bucket-log__title">Продолжить как гость</h2>
+            <p class="bucket-log__text">
+                Этот метод не требует регистрации. Просто оставьте свою почту для будущего получения промокодов на скидку на различные товары.
+            </p>
+            <div class="input-wrap">
+                <label>
+                    <span>E-mail</span>
+                    <input required type="email">
+                </label>
+            </div>
+            <button id="button-guest" class="btn bucket-log__btn" type="button">Продолжить как гость</button>
+        </div>
+        <div class="bucket-log__user">
+            <h2 class="bucket-log__title bucket-log__title--no">или войдите в свой аккаунт</h2>
+            <div class="input-wrap">
+                <label>
+                    <span>{{ entry_email }}</span>
+                    <input id="input-email" type="text" name="email" value="">
+                    <span class="error-msg">Неверное поле</span>
+                </label>
+            </div>
+            <div class="input-wrap">
+                <label>
+                    <span>{{ entry_password }}</span>
+                    <input id="input-password" type="password" name="password" value="" >
+                    <span class="error-msg">Неверное поле</span>
+                </label>
+            </div>
+            <div class="input-wrap"><a href="{{ forgotten }}">{{ text_forgotten }}</a></div>
+            <input class="btn bucket-log__btn" type="button" value="{{ button_login }}" id="button-login" data-loading-text="{{ text_loading }}"  />
+        </div>
+    </div>
+</div>

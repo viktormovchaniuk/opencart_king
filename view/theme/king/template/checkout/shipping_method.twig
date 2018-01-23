@@ -1,0 +1,27 @@
+{% if error_warning %}
+<div class="alert alert-warning alert-dismissible">
+  <i class="fa fa-exclamation-circle"></i> {{ error_warning }}</div>
+{% endif %} 
+
+{% if shipping_methods %}
+<span>Способ доставки</span>
+{% for shipping_method in shipping_methods %}
+<p>
+  <strong>{{ shipping_method.title }}</strong>
+</p>
+{% if not shipping_method.error %} 
+{% for quote in shipping_method.quote %}
+<label>
+  {% if quote.code == code or not code %} {% set code = quote.code %}
+  <input type="radio" name="shipping_method" value="{{ quote.code }}" checked="checked" />
+  <span class="radio-flag"></span>
+  {% else %}
+  <input type="radio" name="shipping_method" value="{{ quote.code }}" />
+  <span class="radio-flag"></span>
+  {% endif %} 
+  {{ quote.title }} - {{ quote.text }}
+</label>
+{% endfor %} {% else %}
+<div class="alert alert-danger alert-dismissible">{{ shipping_method.error }}</div>
+{% endif %} {% endfor %} {% endif %}
+
